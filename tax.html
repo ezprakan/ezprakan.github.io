@@ -278,6 +278,15 @@ details.rules ul{ margin:6px 0 0; padding-left:18px; display:grid; gap:6px; font
 .lbar i{ display:block; height:100%; background:var(--h1); border-radius:999px }
 .gone{ margin:0; padding-left:18px; display:grid; gap:6px; font-size:14px; color:var(--ink-2); font-weight:400 }
 .gone b{ color:var(--ink); font-weight:400 }
+.pri{gap:8px;border:1.5px solid var(--h6)}
+.pri-k{font-size:13px;color:var(--h6);font-weight:500}
+.pri-t{font-size:19px;line-height:1.5;font-weight:400}
+.pri-t b{font-weight:500;color:var(--h6)}
+.pri-n{font-size:13px;color:var(--ink-2);font-weight:400}
+details.recs-card > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:44px}
+details.recs-card > summary::after{content:"";width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-left:auto;margin-right:4px}
+details.recs-card[open] > summary::after{transform:rotate(-135deg)}
+details.recs-card[open] > summary{margin-bottom:8px}
 textarea.sumtext{ font:inherit; font-size:14px; font-weight:400; width:100%; min-height:200px; border-radius:14px; border:1.5px solid var(--line); background:var(--card); color:var(--ink); padding:12px }
 
 /* modal + toast */
@@ -530,13 +539,20 @@ textarea.sumtext{ font:inherit; font-size:14px; font-weight:400; width:100%; min
       <p class="exnote" id="r-exnote" hidden>นี่คือตัวเลขตัวอย่าง <button class="btn link inline" type="button" id="btn-mine">กรอกของฉัน</button></p>
     </div>
 
-    <div class="card recs-card">
-      <h2 class="h2">ลดหย่อนเพิ่มได้อีก <span id="r-room">฿0</span></h2>
+    <div class="card pri" id="r-pri-card">
+      <p class="pri-k">สิ่งที่ควรทำก่อน</p>
+      <p class="pri-t" id="r-pri"></p>
+      <p class="pri-n" id="r-pri-note"></p>
+      <button class="btn line" type="button" id="btn-pri-line">ส่งผลให้ที่ปรึกษาทาง LINE</button>
+    </div>
+
+    <details class="card recs-card" id="recs-fold">
+      <summary class="h2">ดูทุกรายการที่ลดหย่อนเพิ่มได้ <span id="r-room">฿0</span></summary>
       <div class="rgroup"><p class="rhead"><b>1</b>สิทธิ์ที่ไม่ต้องจ่ายเพิ่ม</p><ul class="free" id="r-free"></ul></div>
       <div class="rgroup"><p class="rhead"><b>2</b>กองทุนลดหย่อนภาษี</p><ul class="recs" id="r-funds"></ul></div>
       <div class="rgroup"><p class="rhead"><b>3</b>ประกันที่ยังขาด</p><p class="tiny" id="r-ins-note"></p><ul class="recs" id="r-ins"></ul></div>
       <div class="plan" id="r-combo" aria-live="polite"></div>
-    </div>
+    </details>
 
     <div class="card send" id="s-send">
       <h2 class="h2" id="h-send">ให้ตัวแทนช่วยดูแผนนี้ไหม?</h2>
@@ -1205,6 +1221,35 @@ if (typeof module !== 'undefined') module.exports = { RULES: RULES, compute: com
     }
     $('r-combo').innerHTML = ch;
 
+    // priority: one thing to do first
+    (function () {
+      let best = null;
+      const consider = function (label, sv, free, extra) { if (sv >= 1 && (!best || (free && !best.free) || (free === best.free && sv > best.sv))) best = { label: label, sv: sv, free: free, extra: extra }; };
+      if (c.method === 1) {
+        const spouseOk = S.marital === 'spouseNoInc';
+        if (S.kids >= 2 && S.kids61 === 0) consider('ใส่ <b>ลูกคนที่ 2 ที่เกิดปี 2561 ขึ้นไป</b> (คนละ 60,000)', savingIf(S, { kids61: 1 }), true);
+        if (num(S.salaryM) > 0 && S.ssoMode === 'none') consider('ใส่ <b>ประกันสังคม ม.33</b> (ลดได้ถึง 10,500)', savingIf(S, { ssoMode: 'auto' }), true);
+        Object.keys(G).forEach(function (k) {
+          if (!REC[k] || G[k] < 1 || (k === 'nsf' && S.ssoMode !== 'none')) return;
+          const full = gapEffect(S, k, G[k]);
+          const amt = (full.zeroAt > 0 && full.zeroAt < G[k]) ? full.zeroAt : G[k];
+          const ef = amt === G[k] ? full : gapEffect(S, k, amt);
+          consider('เติม <b>' + REC[k].label + '</b> ราว ' + baht(amt), ef.saving, false);
+        });
+      }
+      const el = $('r-pri'), nt = $('r-pri-note');
+      if (!best) {
+        el.innerHTML = 'ภาษีของคุณอยู่ในจุดที่ลดหย่อนเพิ่มได้น้อย ' + (c.method === 2 ? 'เพราะคิดภาษีแบบ 0.5%' : 'ทักมาคุยเรื่องวางแผนระยะยาวได้');
+        nt.textContent = 'ตัวเลขเป็นการประมาณเพื่อวางแผน';
+      } else if (best.free) {
+        el.innerHTML = best.label + ' · ภาษีลด ~<b>' + baht(best.sv) + '</b> <span class="tiny">ไม่ต้องจ่ายเพิ่ม</span>';
+        nt.textContent = 'ตัวเลขเป็นการประมาณ ทักมาให้ผมช่วยเช็กรายการที่เหมาะกับคุณ';
+      } else {
+        el.innerHTML = best.label + ' · ภาษีลด ~<b>' + baht(best.sv) + '</b>';
+        nt.textContent = 'ภาษีที่ลดไม่เท่ากับกำไร การจ่ายเบี้ยหรือซื้อกองทุนควรดูความจำเป็นและเงื่อนไขก่อน ทักมาให้ผมช่วยเลือกให้เหมาะกับคุณ';
+      }
+    })();
+
     // journey
     const B = baseline();
     const rows = [['j-base', 'ถ้าไม่ลดหย่อนเลย', B], ['j-now', 'หลังลดหย่อนที่มี', c.tax]];
@@ -1322,7 +1367,7 @@ if (typeof module !== 'undefined') module.exports = { RULES: RULES, compute: com
 
   let toastT = 0;
   function toast(msg) { const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 2400); }
-  $('btn-copy').addEventListener('click', function () {
+  function sendToLine() {
     const full = 'สวัสดีครับ ขอปรึกษาแผนภาษีปี 2569 ครับ\n\n' + summaryText(lastC, lastR);
     try { navigator.clipboard.writeText(full).catch(function () {}); } catch (e) {}
     if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -1331,7 +1376,9 @@ if (typeof module !== 'undefined') module.exports = { RULES: RULES, compute: com
       window.open(LINE_ADD, '_blank', 'noopener');
       toast('คัดลอกสรุปแล้ว วางในแชท LINE ได้เลย');
     }
-  });
+  }
+  $('btn-copy').addEventListener('click', sendToLine);
+  $('btn-pri-line').addEventListener('click', sendToLine);
 
   // ---------- render ----------
   function render() {

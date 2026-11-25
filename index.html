@@ -263,17 +263,21 @@ footer .fdisc{margin-top:12px;font-size:11.5px;color:#9A8D85;line-height:1.6;}
 .tools .sec-head{margin-bottom:14px;}
 .tools .sec-head h2{font-size:24px;margin-top:0;}
 .tools .sec-head p{font-size:16px;color:#6B5F58;margin-top:8px;}
-.qgrid{display:grid;gap:14px;}
-.qcard{background:#fff;border-radius:20px;padding:20px 18px 18px;box-shadow:0 6px 22px rgba(60,30,20,.08);display:flex;flex-direction:column;gap:6px;}
-.qcard .qi{font-size:30px;line-height:1;}
-.qcard h3{font-size:20px;line-height:1.35;margin:4px 0 0;}
-.qcard p{font-size:16px;color:#6B5F58;margin:0;line-height:1.55;}
-.qcard .qmeta{font-size:14px;color:#8a7d75;margin-top:2px;}
-.qbtn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;min-height:52px;padding:12px 18px;border-radius:14px;background:var(--red);color:#fff;font-weight:700;font-size:18px;text-decoration:none;box-shadow:0 6px 16px rgba(211,17,69,.28);transition:transform .15s;}
+.qmain{background:#fff;border-radius:22px;padding:24px 20px 22px;box-shadow:0 8px 26px rgba(60,30,20,.10);display:flex;flex-direction:column;gap:8px;}
+.qmain .qi{font-size:34px;line-height:1;}
+.qmain h2{font-size:24px;line-height:1.35;margin:2px 0 0;}
+.qmain p{font-size:17px;color:#6B5F58;margin:0;line-height:1.55;}
+.qbtn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;min-height:56px;padding:12px 18px;border-radius:14px;background:var(--red);color:#fff;font-weight:700;font-size:19px;text-decoration:none;box-shadow:0 6px 16px rgba(211,17,69,.28);transition:transform .15s;}
+.qother{margin:18px 0 0;}
+.qother-h{margin:0 0 8px;font-size:14px;color:#6B5F58;text-align:center;}
+.qother-row{display:grid;grid-template-columns:1fr;gap:10px;}
+.qsub{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:8px 10px;border-radius:12px;background:#fff;color:var(--red);border:1.5px solid var(--red);font-weight:700;font-size:15px;line-height:1.35;text-decoration:none;transition:transform .15s,background .15s;}
+.qsub:active{transform:scale(.98);}
+.qsub:focus-visible{outline:3px solid #F7B5C4;outline-offset:2px;}
+@media (hover:hover){.qsub:hover{background:#FFF0F3;}}
 @media (hover:hover){.qbtn:hover{transform:translateY(-2px);}}
 .qbtn:active{transform:scale(.98);}
 .qbtn:focus-visible{outline:3px solid #F7B5C4;outline-offset:2px;}
-@media (min-width:760px){.qgrid{grid-template-columns:repeat(3,1fr);}}
 @media (max-width:560px){.tools{padding:18px 0 36px;}.hero{padding:24px 0 20px;}}
 </style>
 </head>
@@ -298,35 +302,15 @@ footer .fdisc{margin-top:12px;font-size:11.5px;color:#9A8D85;line-height:1.6;}
 </header>
 
 <!-- TOOLS (ใต้ hero) -->
-<section class="section tools" id="tools" aria-label="แบบทดสอบฟรี 3 แบบ">
+<section class="section tools" id="tools" aria-label="แบบทดสอบฟรี">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>ลองทำแบบทดสอบฟรี</h2>
-      <p>เลือกหัวข้อที่อยากรู้ ใช้เวลาไม่นาน</p>
+    <div class="qmain">
+      <span class="qi" aria-hidden="true">🧮</span>
+      <h2>ปีนี้คุณลดหย่อนภาษีได้อีกเท่าไร</h2>
+      <p>ตอบ 5 หมวด ราว 2 นาที ได้ตัวเลขภาษีของคุณ และสิ่งที่ควรทำก่อน</p>
+      <a class="qbtn" href="tax.html">เริ่มทำแบบทดสอบภาษี</a>
     </div>
-    <div class="qgrid">
-      <div class="qcard">
-        <span class="qi" aria-hidden="true">🧮</span>
-        <h3>ภาษีย่อยง่าย ปี 2569</h3>
-        <p>ปีนี้คุณลดหย่อนภาษีได้อีกเท่าไร ตอบ 5 หมวด ได้ผลพร้อมแนวทางลดหย่อน</p>
-        <span class="qmeta">ราว 2 นาที</span>
-        <a class="qbtn" href="tax.html">เริ่มทำแบบทดสอบ</a>
-      </div>
-      <div class="qcard">
-        <span class="qi" aria-hidden="true">🧭</span>
-        <h3>ค้นหาแผนประกันที่ใช่สำหรับคุณ</h3>
-        <p>ตอบคำถามสั้นๆ ระบบวิเคราะห์ Profile และแนะนำแผน AIA ที่ตรงกับคุณ</p>
-        <span class="qmeta">ราว 4 นาที</span>
-        <a class="qbtn" href="plan.html">เริ่มทำแบบทดสอบ</a>
-      </div>
-      <div class="qcard">
-        <span class="qi" aria-hidden="true">✅</span>
-        <h3>ตัวแทนของคุณดูแลคุณดีแค่ไหน?</h3>
-        <p>9 คำถาม เช็กว่าบริการที่ได้รับอยู่ตรงตามมาตรฐานที่ควรได้หรือไม่</p>
-        <span class="qmeta">ราว 2 นาที</span>
-        <a class="qbtn" href="check.html">เริ่มทำแบบทดสอบ</a>
-      </div>
-    </div>
+    <div class="qother"><p class="qother-h">หรือเลือกเรื่องอื่น</p><div class="qother-row"><a class="qsub" href="value.html">คุณมีมูลค่ากี่ล้านบาท?</a><a class="qsub" href="plan.html">ประกันชีวิตจำเป็นกับฉันหรือเปล่า?</a><a class="qsub" href="check.html">ตัวแทนของคุณดูแลคุณดีแค่ไหน?</a></div></div>
   </div>
 </section>
 

@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>คุณมีมูลค่ากี่ล้านบาท? | ประกันย่อยง่าย</title>
+<meta name="description" content="ลองดูว่ารายได้ของคุณมีมูลค่าเท่าไรต่อครอบครัว และถ้าวันหนึ่งหารายได้ไม่ได้ ครอบครัวจะรับมือได้นานแค่ไหน ใช้เวลาราว 2 นาที ฟรี">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ezprakan.github.io/value.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF6F0; --card:#FFFFFF; --ink:#2B2320; --ink2:#6B5F58; --line:#EADFD7; --soft:#FBEFE8;
+  --red:#D31145; --red-d:#B00E39; --red-soft:#FFE3EA; --green:#05964A; --ok:#1B7F46; --ok-bg:#E6F4EC; --warn:#8A5200; --warn-bg:#FFF1D6;
+  --shadow:0 1px 2px rgba(60,30,20,.05),0 8px 24px rgba(60,30,20,.08);
+  --f:"Prompt","Sukhumvit Set","Noto Sans Thai","Leelawadee UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-weight:400;font-size:17px;line-height:1.85;letter-spacing:.1px;padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(32px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:500;text-wrap:balance}
+p,li,.hint,.sub,.note{text-wrap:pretty}
+a{color:var(--red)}
+button,input,select{font-family:inherit;touch-action:manipulation}
+:focus-visible{outline:3px solid #F7B5C4;outline-offset:2px;border-radius:10px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.col{max-width:560px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px}
+.top a{font-size:16px;text-decoration:none;font-weight:400}
+.brand{font-weight:500;color:var(--ink);text-decoration:none}
+.dots{display:flex;gap:6px;margin:0 0 18px;padding:0;list-style:none}
+.dots li{flex:1;height:5px;border-radius:5px;background:var(--line)}
+.dots li.on{background:var(--red)}
+.card{background:var(--card);border-radius:22px;padding:28px 22px;box-shadow:var(--shadow);margin-bottom:20px}
+.eyebrow{font-size:15px;color:var(--red);font-weight:500;margin-bottom:10px}
+h1{font-size:27px;line-height:1.5;margin-bottom:16px}
+h2{font-size:22px;line-height:1.55;margin-bottom:12px}
+.sub{color:var(--ink2);font-size:16.5px;font-weight:400;line-height:1.85}
+.q{margin-top:30px}
+.q>label,.q>.lab{display:block;font-weight:500;font-size:17px;line-height:1.6;margin-bottom:8px}
+.hint{font-size:15px;line-height:1.7;color:var(--ink2);font-weight:400;margin-bottom:12px}
+input[type=text],input[type=number],input[type=tel]{width:100%;min-height:56px;padding:10px 14px;border:1.5px solid var(--line);border-radius:14px;font-size:18px;background:#fff;color:var(--ink);font-weight:400}
+input:focus{border-color:var(--red);outline:none;box-shadow:0 0 0 3px #F7B5C4}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chip span{display:flex;align-items:center;min-height:56px;padding:12px 18px;border:1.5px solid var(--line);border-radius:16px;background:#fff;font-weight:400;font-size:16.5px;line-height:1.6}
+.chip input:checked+span{border-color:var(--red);background:var(--red-soft);color:var(--red-d);font-weight:500}
+.chip input:focus-visible+span{outline:3px solid #F7B5C4;outline-offset:2px}
+.chips.stack .chip{flex:1 1 100%}
+.btns{display:flex;gap:14px;margin-top:32px}
+.btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:12px 18px;border:0;border-radius:16px;background:var(--red);color:#fff;font-weight:500;font-size:17px;cursor:pointer;text-decoration:none;text-align:center;box-shadow:0 6px 16px rgba(211,17,69,.25)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{flex:0 0 auto;background:#fff;color:var(--ink2);border:1.5px solid var(--line);box-shadow:none;font-weight:400}
+.btn.line{background:var(--green);box-shadow:0 6px 16px rgba(5,150,74,.25)}
+.err{color:#B3261E;font-size:15.5px;line-height:1.7;font-weight:400;margin-top:16px}
+.note{font-size:14.5px;line-height:1.8;color:var(--ink2);font-weight:400;margin-top:20px}
+/* result */
+.hero{text-align:center}
+.big{font-size:46px;line-height:1.3;font-weight:600;color:var(--red);margin:6px 0 2px;letter-spacing:-.5px}
+.big small{font-size:20px;font-weight:500;margin-left:4px}
+.kv{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0;line-height:1.6;border-bottom:1px solid var(--line);font-weight:400}
+.kv:last-child{border-bottom:0}
+.kv b{font-weight:600;text-align:right}
+.kv span{color:var(--ink2)}
+.callout{border-radius:16px;padding:18px 18px;font-size:16.5px;line-height:1.8;font-weight:400;margin-top:18px}
+.callout.warn{background:var(--warn-bg);color:var(--warn)}
+.callout.ok{background:var(--ok-bg);color:var(--ok)}
+.list{margin:14px 0 0;padding-left:22px;font-weight:400;color:var(--ink2);font-size:16.5px;line-height:1.85}
+.list li{margin-bottom:16px}
+.closing{text-align:center}
+.closing p.big2{font-size:23px;line-height:1.7;font-weight:500;margin-bottom:16px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#2B2320;color:#fff;padding:12px 18px;border-radius:14px;font-size:15px;max-width:90vw;z-index:20}
+@media (max-width:360px){.row2{grid-template-columns:1fr}.big{font-size:38px}}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="gut"><div class="col">
+  <div class="top"><a class="brand" href="index.html">ประกันย่อยง่าย</a><a href="index.html">← กลับหน้าแรก</a></div>
+
+  <ol class="dots" id="dots" style="margin-bottom:22px" aria-label="ความคืบหน้า"><li></li><li></li><li></li><li></li></ol>
+
+  <!-- intro -->
+  <section id="s0" class="card">
+    <p class="eyebrow">ใช้เวลาราว 2 นาที · ฟรี</p>
+    <h1>คุณมีมูลค่ากี่ล้านบาท?</h1>
+    <p class="sub">ลองดูว่ารายได้ของคุณมีมูลค่าเท่าไรตลอดช่วงที่ยังทำงาน และถ้าวันหนึ่งหารายได้ไม่ได้ ไม่ว่าจะด้วยเหตุอะไร ครอบครัวจะรับมือได้นานแค่ไหน</p>
+    <div class="btns"><button class="btn" id="go" type="button">เริ่มเลย</button></div>
+    <p class="note">ไม่ต้องกรอกชื่อหรือเบอร์โทร ข้อมูลที่กรอกอยู่ในเครื่องคุณเท่านั้น จะส่งให้ที่ปรึกษาก็ต่อเมื่อคุณกดปุ่มเองตอนท้าย</p>
+  </section>
+
+  <!-- step 1 -->
+  <section id="s1" class="card" hidden>
+    <p class="eyebrow">1 จาก 4 · เรื่องของคุณ</p>
+    <h2>รายได้ที่ครอบครัวพึ่งพาคุณ</h2>
+    <div class="row2 q">
+      <div><label for="age" class="lab" style="display:block;font-weight:500;line-height:1.6;margin-bottom:8px">อายุตอนนี้</label><input id="age" type="number" inputmode="numeric" min="18" max="70" placeholder="เช่น 38"></div>
+      <div><label for="ret" class="lab" style="display:block;font-weight:500;line-height:1.6;margin-bottom:8px">ตั้งใจทำงานถึงอายุ</label><input id="ret" type="number" inputmode="numeric" min="20" max="80" placeholder="เช่น 60"></div>
+    </div>
+    <div class="q">
+      <label for="inc">รายได้ต่อเดือน หลังหักภาษี (บาท)</label>
+      <input id="inc" type="text" inputmode="numeric" placeholder="เช่น 50,000" autocomplete="off">
+    </div>
+    <div class="q">
+      <div class="lab">รายได้นี้ ใช้กับครอบครัวประมาณเท่าไร</div>
+      <p class="hint">ส่วนที่ใช้จ่ายให้บ้าน ผ่อนหนี้ ส่งลูกเรียน ดูแลพ่อแม่ ไม่รวมส่วนที่ใช้กับตัวเองคนเดียว</p>
+      <div class="chips" role="radiogroup" aria-label="สัดส่วนที่ใช้กับครอบครัว">
+        <label class="chip"><input type="radio" name="pct" value="50"><span>ประมาณครึ่งหนึ่ง</span></label>
+        <label class="chip"><input type="radio" name="pct" value="70" checked><span>ราว 70%</span></label>
+        <label class="chip"><input type="radio" name="pct" value="90"><span>เกือบทั้งหมด</span></label>
+      </div>
+    </div>
+    <p class="err" id="e1" role="alert" hidden></p>
+    <div class="btns"><button class="btn ghost" type="button" data-back="0">ย้อนกลับ</button><button class="btn" type="button" data-next="1">ถัดไป</button></div>
+  </section>
+
+  <!-- step 2 -->
+  <section id="s2" class="card" hidden>
+    <p class="eyebrow">2 จาก 4 · คนที่พึ่งพาคุณ</p>
+    <h2>ใครอยู่ข้างหลังคุณบ้าง</h2>
+    <div class="q">
+      <div class="lab">คู่สมรส</div>
+      <div class="chips" role="radiogroup" aria-label="คู่สมรส">
+        <label class="chip"><input type="radio" name="sp" value="none" checked><span>ไม่มี</span></label>
+        <label class="chip"><input type="radio" name="sp" value="noinc"><span>มี ไม่มีรายได้</span></label>
+        <label class="chip"><input type="radio" name="sp" value="inc"><span>มี และมีรายได้</span></label>
+      </div>
+    </div>
+    <div class="row2 q">
+      <div><label for="kids" class="lab" style="display:block;font-weight:500;line-height:1.6;margin-bottom:8px">ลูกที่ดูแลอยู่ (คน)</label><input id="kids" type="number" inputmode="numeric" min="0" max="10" placeholder="0"></div>
+      <div><label for="par" class="lab" style="display:block;font-weight:500;line-height:1.6;margin-bottom:8px">พ่อแม่ที่ดูแล (คน)</label><input id="par" type="number" inputmode="numeric" min="0" max="4" placeholder="0"></div>
+    </div>
+    <div class="q" id="kidAgeBox" hidden>
+      <div class="lab">อายุลูกแต่ละคน</div>
+      <p class="hint">ใส่ให้ครบทุกคน ใช้ดูว่าถ้าเกิดเหตุ ลูกแต่ละคนจะอยู่ในวัยไหน</p>
+      <div class="row2" id="kidAges"></div>
+    </div>
+    <p class="err" id="e2" role="alert" hidden></p>
+    <div class="btns"><button class="btn ghost" type="button" data-back="1">ย้อนกลับ</button><button class="btn" type="button" data-next="2">ถัดไป</button></div>
+  </section>
+
+  <!-- step 3 -->
+  <section id="s3" class="card" hidden>
+    <p class="eyebrow">3 จาก 4 · สิ่งที่มีอยู่</p>
+    <h2>ภาระและเงินที่รองรับอยู่แล้ว</h2>
+    <p class="sub">ประมาณคร่าวๆ ได้เลย ไม่ต้องเป๊ะ ช่องไหนไม่มีให้เว้นว่าง</p>
+    <div class="q">
+      <label for="debt">หนี้ก้อนใหญ่ที่เหลือ (บาท)</label>
+      <p class="hint">เช่น บ้าน รถ รวมกัน</p>
+      <input id="debt" type="text" inputmode="numeric" placeholder="เช่น 2,000,000" autocomplete="off">
+    </div>
+    <div class="q">
+      <label for="sav">เงินสำรองที่ใช้ได้ทันที (บาท)</label>
+      <p class="hint">เงินออม เงินฝาก ที่หยิบมาใช้ได้ภายในไม่กี่วัน ไม่รวมบ้านหรือเงินเกษียณ</p>
+      <input id="sav" type="text" inputmode="numeric" placeholder="เช่น 300,000" autocomplete="off">
+    </div>
+    <div class="q">
+      <label for="life">ถ้าคุณจากไป ครอบครัวจะได้รับเงินก้อนจากประกันชีวิตเท่าไหร่ (บาท)</label>
+      <p class="hint">รวมทุกกรมธรรม์ที่จ่ายเมื่อเสียชีวิต ถ้าไม่มีหรือไม่แน่ใจให้เว้นว่าง</p>
+      <input id="life" type="text" inputmode="numeric" placeholder="เช่น 1,000,000" autocomplete="off">
+    </div>
+    <div class="q">
+      <label for="ci">ถ้าคุณป่วยเป็นโรคร้ายแรง คุณจะได้รับเงินก้อนจากประกันเท่าไหร่ (บาท)</label>
+      <p class="hint">รวมทุกกรมธรรม์ที่จ่ายเป็นเงินก้อน ทั้งกรณีโรคร้ายแรงและทุพพลภาพถาวร ไม่นับค่ารักษาพยาบาล ถ้าไม่มีหรือไม่แน่ใจให้เว้นว่าง</p>
+      <input id="ci" type="text" inputmode="numeric" placeholder="เช่น 500,000" autocomplete="off">
+    </div>
+    <div class="btns"><button class="btn ghost" type="button" data-back="2">ย้อนกลับ</button><button class="btn" type="button" data-next="3">ถัดไป</button></div>
+  </section>
+
+  <!-- step 4 -->
+  <section id="s4" class="card" hidden>
+    <p class="eyebrow">4 จาก 4 · ถ้าแผนไม่เป็นอย่างที่คิด</p>
+    <h2>ถ้าวันหนึ่งคุณหารายได้ไม่ได้อีกต่อไป ครอบครัวจะเป็นอย่างไร</h2>
+    <p class="sub">ไม่ว่าจะด้วยเหตุอะไร ลองเลือกเหตุที่คุณอยากลองคิดดู</p>
+    <div class="q">
+      <div class="lab">เหตุที่ทำให้รายได้หายไป</div>
+      <div class="chips stack" role="radiogroup" aria-label="เหตุการณ์">
+        <label class="chip"><input type="radio" name="ev" value="dis" checked><span>มีปัญหาสุขภาพหรือพิการ กลับไปทำงานเดิมไม่ได้</span></label>
+        <label class="chip"><input type="radio" name="ev" value="job"><span>ถูกเลิกจ้าง หรือธุรกิจล้ม</span></label>
+        <label class="chip"><input type="radio" name="ev" value="death"><span>จากไปก่อนวัยที่วางแผนไว้</span></label>
+      </div>
+    </div>
+    <div class="row2 q">
+      <div><label for="evAge" class="lab" style="display:block;font-weight:500;line-height:1.6;margin-bottom:8px">เกิดตอนอายุ</label><input id="evAge" type="number" inputmode="numeric" min="18" max="80" placeholder="เช่น 55"></div>
+      <div id="durBox"><label for="dur" class="lab" style="display:block;font-weight:500;line-height:1.6;margin-bottom:8px">หารายได้ไม่ได้ (ปี)</label><input id="dur" type="number" inputmode="numeric" min="1" max="30" placeholder="เช่น 5"></div>
+    </div>
+    <div class="q">
+      <div class="lab">ถ้าเกิดขึ้นจริง ครอบครัวคุณน่าจะต้องเปลี่ยนอะไรบ้าง</div>
+      <p class="hint">เลือกได้หลายข้อ ตามที่นึกภาพออก</p>
+      <div class="chips stack" id="chg"></div>
+    </div>
+    <p class="err" id="e4" role="alert" hidden></p>
+    <div class="btns"><button class="btn ghost" type="button" data-back="3">ย้อนกลับ</button><button class="btn" type="button" id="calc">ดูผล</button></div>
+  </section>
+
+  <!-- result -->
+  <div id="res" hidden>
+    <section class="card hero">
+      <p class="eyebrow">รายได้ที่ครอบครัวพึ่งพาคุณ</p>
+      <p class="big" id="r-val"></p>
+      <p class="sub" id="r-val-sub"></p>
+    </section>
+
+    <section class="card">
+      <h2 id="r-ev-title"></h2>
+      <div id="r-ev-rows"></div>
+      <div class="callout" id="r-runway"></div>
+      <div class="callout" id="r-gap"></div>
+      <p class="note" id="r-assume"></p>
+    </section>
+
+    <section class="card" id="r-chg-card">
+      <h2 id="r-chg-title"></h2>
+      <ul class="list" id="r-chg-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>เรื่องแบบนี้ เครื่องมือที่ช่วยได้ไม่เหมือนกัน</h2>
+      <ul class="list" id="r-tools"></ul>
+    </section>
+
+    <section class="card closing">
+      <p class="big2">คุณดูแลพวกเขามาทั้งชีวิต<br>ผมช่วยให้การดูแลนั้นไม่หยุด</p>
+      <p class="sub">ส่งผลนี้ให้ผมทาง LINE แล้วเรามาดูกันว่าแผนของคุณเหลือช่องว่างตรงไหน ฟรี ไม่มีข้อผูกมัด</p>
+      <div class="btns"><button class="btn line" type="button" id="send">ส่งผลให้ที่ปรึกษาทาง LINE</button></div>
+      <div class="btns" style="margin-top:12px"><button class="btn ghost" type="button" id="again" style="flex:1">ลองใหม่ด้วยตัวเลขอื่น</button></div>
+      <p class="note">ผลนี้เป็นการประมาณการเบื้องต้นจากตัวเลขที่คุณกรอก ไม่ใช่คำแนะนำทางการเงินหรือการวางแผนเฉพาะบุคคล ตัวเลขจริงขึ้นกับรายละเอียดของแต่ละครอบครัว</p>
+    </section>
+  </div>
+</div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function () {
+  'use strict';
+  var LINE_ADD = 'https://lin.ee/B29OOa0';
+  var LINE_MSG = 'https://line.me/R/oaMessage/%40eazyprakan/?';
+  var $ = function (id) { return document.getElementById(id); };
+  var steps = ['s0', 's1', 's2', 's3', 's4'];
+  var cur = 0, last = null;
+
+  function num(id) { var v = String($(id).value || '').replace(/[^\d.]/g, ''); var n = parseFloat(v); return isFinite(n) ? n : 0; }
+  function radio(name) { var e = document.querySelector('input[name="' + name + '"]:checked'); return e ? e.value : ''; }
+  function comma(n) { return Math.round(n).toLocaleString('en-US'); }
+  function baht(n) { return '฿' + comma(n); }
+  function money(n) {
+    if (n >= 1e6) { var m = n / 1e6; return (m >= 10 ? Math.round(m) : Math.round(m * 10) / 10) + ' ล้านบาท'; }
+    return baht(n);
+  }
+  function months(m) {
+    if (m < 1) return 'ไม่ถึง 1 เดือน';
+    if (m >= 24) return 'ราว ' + (Math.round(m / 12 * 10) / 10) + ' ปี';
+    return 'ราว ' + Math.round(m) + ' เดือน';
+  }
+  function toast(t) { var el = $('toast'); el.textContent = t; el.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(function () { el.hidden = true; }, 3200); }
+
+  // thousands separator while typing
+  ['inc', 'debt', 'sav', 'life', 'ci'].forEach(function (id) {
+    $(id).addEventListener('input', function () {
+      var d = this.value.replace(/[^\d]/g, '');
+      this.value = d ? Number(d).toLocaleString('en-US') : '';
+    });
+  });
+
+  function show(i) {
+    cur = i;
+    steps.forEach(function (s, k) { $(s).hidden = k !== i; });
+    $('res').hidden = true;
+    var lis = $('dots').children;
+    for (var k = 0; k < lis.length; k++) lis[k].className = (i >= 1 && k < i) ? 'on' : '';
+    $('dots').hidden = i === 0;
+    window.scrollTo(0, 0);
+    var h = $(steps[i]).querySelector('h1,h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+  }
+
+  function err(id, msg) { var e = $(id); e.textContent = msg; e.hidden = !msg; return !msg; }
+
+  function valid1() {
+    var a = num('age'), r = num('ret'), i = num('inc');
+    if (a < 18 || a > 70) return err('e1', 'ใส่อายุตอนนี้ระหว่าง 18–70 ปี');
+    if (r <= a || r > 80) return err('e1', 'อายุที่ตั้งใจทำงานถึงต้องมากกว่าอายุตอนนี้ และไม่เกิน 80');
+    if (i < 1) return err('e1', 'ใส่รายได้ต่อเดือนหลังหักภาษี');
+    return err('e1', '');
+  }
+  function valid2() {
+    var ks = kidAgeVals();
+    for (var i = 0; i < ks.length; i++) if (String(ks[i]).trim() === '' || +ks[i] < 0 || +ks[i] > 40) return err('e2', 'ใส่อายุลูกให้ครบทุกคน (ลูกคนที่ ' + (i + 1) + ')');
+    return err('e2', '');
+  }
+
+  function setChanges() {
+    var sp = radio('sp'), kids = num('kids') > 0, par = num('par') > 0;
+    var items = [];
+    if (sp === 'noinc' || sp === 'inc') items.push(['sp', 'คู่สมรสต้องหางานทำ หรือทำงานเพิ่ม']);
+    if (kids) items.push(['sch', 'ต้องย้ายลูกไปโรงเรียนที่ค่าเทอมถูกลง']);
+    items.push(['house', 'ต้องขายหรือเปลี่ยนบ้าน รถ']);
+    items.push(['ret', 'ต้องหยิบเงินเกษียณหรือเงินเก็บระยะยาวมาใช้ก่อนเวลา']);
+    if (par) items.push(['par', 'ต้องลดเงินที่ส่งดูแลพ่อแม่']);
+    items.push(['rel', 'ต้องขอพึ่งญาติพี่น้อง']);
+    items.push(['life', 'ต้องลดคุณภาพชีวิตประจำวันลงอย่างเห็นได้ชัด']);
+    $('chg').innerHTML = items.map(function (it) {
+      return '<label class="chip"><input type="checkbox" name="chg" value="' + it[0] + '" data-t="' + it[1] + '"><span>' + it[1] + '</span></label>';
+    }).join('') + '<label class="chip"><input type="checkbox" name="none" id="chgNone"><span>ไม่ต้องเปลี่ยนอะไร เงินสำรองของเราพอ</span></label>';
+    $('chgNone').addEventListener('change', function () {
+      if (this.checked) document.querySelectorAll('input[name="chg"]').forEach(function (c) { c.checked = false; });
+    });
+    document.querySelectorAll('input[name="chg"]').forEach(function (c) {
+      c.addEventListener('change', function () { if (this.checked) $('chgNone').checked = false; });
+    });
+  }
+
+  function syncEvent() {
+    var ev = radio('ev');
+    $('durBox').hidden = ev === 'death';
+  }
+  document.querySelectorAll('input[name="ev"]').forEach(function (r) { r.addEventListener('change', syncEvent); });
+  function kidAgeVals() { return Array.prototype.map.call(document.querySelectorAll('#kidAges input'), function (i) { return i.value; }); }
+  function renderKidAges() {
+    var n = Math.min(10, Math.max(0, Math.floor(num('kids')))), old = kidAgeVals(), h = '';
+    for (var i = 0; i < n; i++) h += '<div><label for="ka' + i + '" style="display:block;font-weight:400;font-size:15.5px;line-height:1.6;margin-bottom:8px">ลูกคนที่ ' + (i + 1) + ' อายุ (ปี)</label><input id="ka' + i + '" type="number" inputmode="numeric" min="0" max="40" placeholder="เช่น ' + (6 + i * 3) + '" value="' + (old[i] || '') + '"></div>';
+    $('kidAges').innerHTML = h; $('kidAgeBox').hidden = n === 0;
+  }
+  $('kids').addEventListener('input', renderKidAges);
+
+  $('go').addEventListener('click', function () { show(1); });
+  document.querySelectorAll('[data-back]').forEach(function (b) { b.addEventListener('click', function () { show(+b.getAttribute('data-back')); }); });
+  document.querySelectorAll('[data-next]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var n = +b.getAttribute('data-next');
+      if (n === 1 && !valid1()) return;
+      if (n === 2 && !valid2()) return;
+      if (n === 3) { /* optional fields */ }
+      if (n === 3) { setChanges(); if (!$('evAge').value) { var a = num('age'), r = num('ret'); $('evAge').value = Math.min(r - 1, Math.max(a + 1, 55)); } if (!$('dur').value) $('dur').value = 5; syncEvent(); show(4); return; }
+      show(n + 1);
+    });
+  });
+
+  function compute() {
+    var age = num('age'), ret = num('ret'), inc = num('inc');
+    var pct = (+radio('pct') || 70) / 100;
+    var fam = inc * pct;                      // บาท/เดือน ที่ครอบครัวพึ่งพา
+    var yearsLeft = Math.max(0, ret - age);
+    var value = fam * 12 * yearsLeft;
+    var ev = radio('ev'), evAge = num('evAge'), dur = Math.max(1, num('dur') || 1);
+    var debt = num('debt'), sav = num('sav'), life = num('life'), ci = num('ci');
+    var yrsToRet = Math.max(0, ret - evAge);
+    var lostYears = ev === 'death' ? yrsToRet : Math.min(dur, yrsToRet);
+    var lost = fam * 12 * lostYears;
+    var payout = ev === 'death' ? life : (ev === 'dis' ? ci : 0);
+    var debtNow = ev === 'death' ? debt : 0;
+    var have = sav + payout;
+    // ครอบครัวปรับลดรายจ่ายได้บ้าง: ช่วงความต้องการ 60%–100% ของรายได้ที่หายไป
+    var gapLow = Math.max(0, lost * 0.6 + debtNow - have);
+    var gapHigh = Math.max(0, lost * 1.0 + debtNow - have);
+    var runway = fam > 0 ? sav / fam : 0;
+    var chg = []; document.querySelectorAll('input[name="chg"]:checked').forEach(function (c) { chg.push(c.getAttribute('data-t')); });
+    var none = $('chgNone') && $('chgNone').checked;
+    return { age: age, ret: ret, inc: inc, pct: pct, fam: fam, yearsLeft: yearsLeft, value: value, ev: ev, evAge: evAge, dur: dur, debt: debt, sav: sav, life: life, ci: ci,
+      lostYears: lostYears, lost: lost, payout: payout, debtNow: debtNow, have: have, gapLow: gapLow, gapHigh: gapHigh, runway: runway, chg: chg, none: none,
+      sp: radio('sp'), kids: num('kids'), par: num('par'), kidAges: kidAgeVals().map(Number) };
+  }
+
+  var EVN = { dis: 'มีปัญหาสุขภาพหรือพิการ', job: 'ถูกเลิกจ้างหรือธุรกิจล้ม', death: 'จากไปก่อนวัยที่วางแผนไว้' };
+
+  function render(R) {
+    $('r-val').innerHTML = money(R.value).replace(/ล้านบาท$/, '<small>ล้านบาท</small>');
+    if (R.value < 1e6) $('r-val').textContent = money(R.value);
+    $('r-val-sub').textContent = 'คือรายได้ส่วนที่ใช้กับครอบครัว ' + baht(R.fam) + ' ต่อเดือน × ' + R.yearsLeft + ' ปีที่ตั้งใจทำงานต่อ (ยังไม่รวมโบนัสหรือรายได้ที่เพิ่มขึ้นในอนาคต)';
+
+    var title = 'ถ้าคุณ' + EVN[R.ev].replace('จากไป', 'จากไป') + ' ตอนอายุ ' + R.evAge;
+    $('r-ev-title').textContent = title + (R.ev === 'death' ? '' : ' และหารายได้ไม่ได้ ' + R.lostYears + ' ปี');
+    var rows = '';
+    if (R.lostYears <= 0) {
+      rows = '<div class="kv"><span>อายุนี้เลยช่วงที่ตั้งใจทำงานแล้ว</span><b>กระทบรายได้น้อยลง</b></div>';
+    } else {
+      rows += '<div class="kv"><span>รายได้ที่ครอบครัวเสียไป</span><b>' + money(R.lost) + '</b></div>';
+      if (R.debtNow > 0) rows += '<div class="kv"><span>หนี้ที่ยังเหลืออยู่</span><b>' + money(R.debtNow) + '</b></div>';
+      rows += '<div class="kv"><span>เงินสำรองที่มี</span><b>' + money(R.sav) + '</b></div>';
+      if (R.payout > 0) rows += '<div class="kv"><span>ประกันที่จ่ายในเหตุนี้</span><b>' + money(R.payout) + '</b></div>';
+    }
+    if (R.kidAges.length && R.lostYears > 0) {
+      var d = R.evAge - R.age, at = R.kidAges.map(function (k) { return Math.round(k + d); });
+      var school = at.filter(function (k) { return k < 22; }).length;
+      rows += '<div class="kv"><span>ตอนเกิดเหตุ ลูกจะอายุ</span><b>' + at.join(', ') + ' ปี</b></div>';
+      rows += '<div class="kv"><span>ลูกที่ยังเรียนอยู่ (อายุต่ำกว่า 22)</span><b style="white-space:nowrap">' + school + ' จาก ' + at.length + ' คน</b></div>';
+    }
+    $('r-ev-rows').innerHTML = rows;
+
+    var rw = $('r-runway');
+    if (R.fam > 0) { rw.className = 'callout ' + (R.runway >= 12 ? 'ok' : 'warn'); rw.textContent = 'ถ้ารายได้หยุด เงินสำรองอย่างเดียวดูแลครอบครัวได้ ' + months(R.runway); }
+    var gp = $('r-gap');
+    if (R.lostYears <= 0) { gp.hidden = true; }
+    else {
+      gp.hidden = false;
+      if (R.gapHigh < 1) { gp.className = 'callout ok'; gp.textContent = 'จากตัวเลขที่กรอก สิ่งที่มีอยู่ครอบคลุมเหตุนี้แล้ว ลองเปลี่ยนเหตุหรืออายุดูอีกครั้งได้'; }
+      else { gp.className = 'callout warn'; gp.textContent = 'ส่วนที่ยังขาดอยู่ ประมาณ ' + (R.gapLow < 1 ? 'ไม่เกิน ' + money(R.gapHigh) : money(R.gapLow) + ' ถึง ' + money(R.gapHigh)); }
+    }
+    $('r-assume').textContent = 'ประมาณจากสมมติฐานว่าครอบครัวปรับลดรายจ่ายได้บ้าง จึงแสดงเป็นช่วง 60%–100% ของรายได้ที่หายไป ไม่คิดดอกเบี้ย เงินเฟ้อ หรือสิทธิ์อื่นเช่นประกันสังคม';
+
+    var n = R.chg.length;
+    if (R.none) { $('r-chg-title').textContent = 'คุณบอกว่าครอบครัวไม่ต้องเปลี่ยนอะไร'; $('r-chg-list').innerHTML = '<li>ดีมาก ลองถามตัวเองต่ออีกข้อ เงินสำรองนั้นพอกี่เดือน และถ้านานกว่านั้นล่ะ</li>'; }
+    else if (n === 0) { $('r-chg-title').textContent = 'ยังไม่ได้เลือกสิ่งที่ครอบครัวต้องเปลี่ยน'; $('r-chg-list').innerHTML = '<li>ลองกลับไปข้อสุดท้าย แล้วนึกภาพว่าบ้านคุณจะเปลี่ยนไปอย่างไร</li>'; }
+    else { $('r-chg-title').textContent = 'ครอบครัวคุณต้องเปลี่ยนชีวิต ' + n + ' เรื่อง'; $('r-chg-list').innerHTML = R.chg.map(function (t) { return '<li>' + t + '</li>'; }).join(''); }
+
+    var tools = [];
+    tools.push('<b>จากไป:</b> ประกันชีวิตและเงินสำรองช่วยได้ตรงที่สุด');
+    tools.push('<b>ปัญหาสุขภาพ/พิการ:</b> ต้องดูหลายส่วนรวมกัน ทั้งประกันสุขภาพ ประกันโรคร้ายแรง ประกันทุพพลภาพ ประกันชีวิตอย่างเดียวไม่ตอบทั้งหมด');
+    tools.push('<b>ตกงาน/ธุรกิจล้ม:</b> ประกันไม่ได้ช่วยตรงนี้ ต้องอาศัยเงินสำรองฉุกเฉินและทักษะ');
+    $('r-tools').innerHTML = tools.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+  }
+
+  function summary(R) {
+    var L = [];
+    L.push('ผลจากเครื่องมือ "คุณมีมูลค่ากี่ล้านบาท?"');
+    L.push('อายุ ' + R.age + ' ตั้งใจทำงานถึง ' + R.ret + ' · รายได้ ' + baht(R.inc) + '/เดือน (ใช้กับครอบครัว ~' + Math.round(R.pct * 100) + '%)');
+    var fm = []; if (R.sp === 'noinc') fm.push('คู่สมรสไม่มีรายได้'); if (R.sp === 'inc') fm.push('คู่สมรสมีรายได้'); if (R.kids) fm.push('ลูก ' + R.kids + ' คน' + (R.kidAges.length ? ' (อายุ ' + R.kidAges.join(', ') + ')' : '')); if (R.par) fm.push('ดูแลพ่อแม่ ' + R.par + ' คน');
+    if (fm.length) L.push('ครอบครัว: ' + fm.join(', '));
+    L.push('มูลค่ารายได้ที่ครอบครัวพึ่งพา: ' + money(R.value));
+    L.push('หนี้ ' + baht(R.debt) + ' · เงินสำรอง ' + baht(R.sav) + ' · ประกันชีวิต ' + baht(R.life) + ' · ประกันปัญหาสุขภาพ/ทุพพลภาพ ' + baht(R.ci));
+    L.push('สถานการณ์: ' + EVN[R.ev] + ' ตอนอายุ ' + R.evAge + (R.ev === 'death' ? '' : ' หารายได้ไม่ได้ ' + R.lostYears + ' ปี'));
+    if (R.fam > 0) L.push('เงินสำรองอยู่ได้ ' + months(R.runway));
+    if (R.lostYears > 0) L.push('ส่วนที่ยังขาด: ' + (R.gapHigh < 1 ? 'ไม่ขาดตามตัวเลขที่กรอก' : (R.gapLow < 1 ? 'ไม่เกิน ' + money(R.gapHigh) : money(R.gapLow) + ' ถึง ' + money(R.gapHigh))));
+    L.push(R.none ? 'ครอบครัวไม่ต้องเปลี่ยนอะไร' : 'ต้องเปลี่ยนชีวิต ' + R.chg.length + ' เรื่อง');
+    return L.join('\n');
+  }
+
+  $('calc').addEventListener('click', function () {
+    var ea = num('evAge'), a = num('age');
+    if (ea < a) return err('e4', 'อายุตอนเกิดเหตุต้องไม่น้อยกว่าอายุตอนนี้');
+    if (radio('ev') !== 'death' && num('dur') < 1) return err('e4', 'ใส่จำนวนปีที่หารายได้ไม่ได้ อย่างน้อย 1 ปี');
+    err('e4', '');
+    last = compute(); render(last);
+    steps.forEach(function (s) { $(s).hidden = true; });
+    $('res').hidden = false;
+    var lis = $('dots').children; for (var k = 0; k < lis.length; k++) lis[k].className = 'on';
+    window.scrollTo(0, 0);
+  });
+
+  $('again').addEventListener('click', function () { show(1); });
+
+  $('send').addEventListener('click', function () {
+    if (!last) return;
+    var full = 'สวัสดีครับ ขอคุยเรื่องความคุ้มครองรายได้ของครอบครัวครับ\n\n' + summary(last);
+    try { navigator.clipboard.writeText(full).catch(function () {}); } catch (e) {}
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) { window.location.href = LINE_MSG + encodeURIComponent(full); }
+    else { window.open(LINE_ADD, '_blank', 'noopener'); toast('คัดลอกสรุปแล้ว วางในแชท LINE ได้เลย'); }
+  });
+
+  show(0);
+})();
+</script>
+</body>
+</html>
